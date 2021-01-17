@@ -1,0 +1,18 @@
+<div>
+    <ng-container *ngIf="showall ; else elseblock">
+        <ol>
+            <ng-container *ngFor="let todo of todos.slice(0,20); let i = index">
+                <li (click)="getApi(todo.id)">
+                    {{todo.title}}
+                </li>
+            </ng-container>
+        </ol>
+    </ng-container>
+    <ng-container #elseblock>
+        <div *ngFor="let i of selected">
+            <h3>Selected Todo:</h3>
+            <br>{{i.completed}}<br>{{i.id}}​<br>{{i.title}}<br>{{i.userId}} <br>
+            <button (click)="showalltodo()">Back</button>
+        </div>
+    </ng-container>
+</div>

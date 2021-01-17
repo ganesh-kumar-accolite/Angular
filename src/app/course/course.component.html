@@ -1,0 +1,51 @@
+<div>
+    
+    <div id="addSession" >
+        <form [formGroup]="newf" (ngSubmit)="addNewSession()">
+                <label for="name">
+                    Name
+                </label>
+                <input id="name" type="text" formControlName="name"><br>
+                <label for="trainer">
+                    Trainer
+                </label>
+                <input id="trainer" type="text" formControlName="trainer"><br>
+                <label for="date">
+                    Date
+                </label>
+                <input id="date" type="date" formControlName="date"><br>
+            <button class="button" type="submit">Add</button><br>
+
+        </form>
+    </div>
+    <div id="sessionList">
+        <div *ngFor="let session of sessions">
+            <h3 (click)="expand(session.id)">{{session.name}}</h3>
+            <div *ngIf="Details === session.id">
+                <p>{{session.trainer}}</p>
+                <p> {{session.date  }}</p>
+            </div>
+            <button (click)="editSession(session.id)">Edit</button>
+            <button  (click)="deleteSession(session.id)">Delete </button>
+            <br>
+            <ng-container *ngIf="edit==session.id">
+                <form [formGroup]="editf" (ngSubmit)="addNewSession()">
+                    <label for="name">
+                        Name
+                    </label>
+                    <input id="name" type="text" formControlName="name"><br>
+                    <label for="trainer">
+                        Trainer
+                    </label>
+                    <input id="trainer" type="text" formControlName="trainer"><br>
+                    <label for="date">
+                        Date
+                    </label>
+                    <input id="date" type="date" formControlName="date"><br>
+                <button class="button" type="submit">Update</button><br>
+    
+            </form>
+            </ng-container>
+        </div>
+    </div>
+</div>
